@@ -80,3 +80,9 @@ switch(loopDifficulty){
         break;
 };
 
+let javascriptBasicsCategoryAnswers = [2,2,2,2];
+
+let name = {
+    name: userName,
+    points : 0,
+}
