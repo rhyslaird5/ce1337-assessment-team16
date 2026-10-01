@@ -8,10 +8,11 @@ let loopPoints = null;
 let condPoints = null;
 let varPoints = null;
 let javaPoints = null;
+let num = 0;
 //A function that can be used to restart the quiz when called.
 function quiz(){
     let userCategories = prompt.question("Pick a Category \nA. Loops \nB. Conditional \nC. Variables \nD. JavaScript Basics \n");
-    userCategories = Number(userCategories);
+    
     switch(userCategories){
         case "A":
             console.log("Loops");
@@ -33,13 +34,19 @@ function quiz(){
             //A prompt to ask which JavaScript difficulty they would like.
             javaDifficulty = prompt.question("Pick a difficulty \nA.Hard = 20 points \nB.Medium = 15 points \nC.Easy = 10 points \nD.Very Easy = 5 points \n");
             break;
-            
+        default:
+            console.log("Invalid input");
+            num = 1
+            break;
     };
     
 };
 
-quiz() //This is used to start the quiz.
- 
+quiz(); //This is used to start the quiz.
+if (num === 1) {
+    quiz();
+    num = 0;
+}
 // All arrays for each category and the questions associated with each category with answers arrays
 
 let loopCategory =  ["Which loop is most suitable when you know exactly how many times something should repeat?", "Which loop may not run at all if its condition is false from the beginning?", "Which loop may not run at all if its condition is false from the beginning?", "Which loop type is guaranteed to execute at least once?" ];
