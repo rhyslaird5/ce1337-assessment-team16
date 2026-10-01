@@ -6,27 +6,32 @@ function wrongAnswer(corrAns){
 };
 //A bare bones function that can be used to restart the quiz when called (need to update placeholders with correct quiz cates)
 function quiz(){
-    let cate = prompt.question("Pick a Category \n1. Loops \n2. Conditional \n3. Variables \n4. JavaScript Basics");
+    let cate = prompt.question("Pick a Category \n1. Loops \n2. Conditional \n3. Variables \n4. JavaScript Basics \n");
     cate = Number(cate);
     switch(cate){
         case 1:
             console.log("Loops");
-
+            //A prompt to ask which Loop points they would like.
+            let loopPoints = prompt.question("Pick between these options to earn points \n1. 20 points \n2. 15 pints \n3. 10 points \n4. 5 points \n");
             break;
         case 2:
             console.log("Conditional");
-
+            //A prompt to ask which Conditional points they would like.
+            let condPoints = prompt.question("Pick between these options to earn points \n1. 20 points \n2. 15 pints \n3. 10 points \n4. 5 points \n");
             break;
         case 3:
             console.log("Variables");
-
+            //A prompt to ask which Variables points they would like.
+            let varPoints = prompt.question("Pick between these options to earn points \n1. 20 points \n2. 15 pints \n3. 10 points \n4. 5 points \n");
             break;
         case 4:
-            console.log("JavaScript Basics")
-
+            console.log("JavaScript Basics");
+            //A prompt to ask which JavaScript points they would like.
+            let javaPoints = prompt.question("Pick between these options to earn points \n1. 20 points \n2. 15 pints \n3. 10 points \n4. 5 points \n");
             break;
             
     };
+    return loopPoints,condPoints,varPoints,javaPoints;
 };
 
 quiz() //This is used to start the quiz.
@@ -44,3 +49,8 @@ let variablesCategoryAnswers = [2,2,2,3];
 
 let javascriptBasicsCategory = [" Fill in the blank: JavaScript is considered a ______ language because code is run line by line.", "What does NaN stand for?", "What is the purpose of console.log()?", "What naming style is commonly used for JavaScript variables containing multiple words?", ]
 let javascriptBasicsCategoryAnswers = [2,2,2,2];
+
+
+switch(){
+    case 1:
+}
