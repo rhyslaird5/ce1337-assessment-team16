@@ -8,7 +8,7 @@ let loopPoints = null;
 let condPoints = null;
 let varPoints = null;
 let javaPoints = null;
-let num = 0;
+let num = 1;
 //A function that can be used to restart the quiz when called.
 function quiz(){
     let userCategories = prompt.question("Pick a Category \nA. Loops \nB. Conditional \nC. Variables \nD. JavaScript Basics \n");
@@ -18,35 +18,38 @@ function quiz(){
             console.log("Loops");
             //A prompt to ask which Loop difficulty they would like.
             loopDifficulty = prompt.question("Pick a difficulty \nA.Hard = 20 points \nB.Medium = 15 points \nC.Easy = 10 points \nD.Very Easy = 5 points \n");
+            num = 0;
             break;
         case "B":
             console.log("Conditional");
             //A prompt to ask which Conditional difficulty they would like.
             condDifficulty = prompt.question("Pick a difficulty \nA.Hard = 20 points \nB.Medium = 15 points \nC.Easy = 10 points \nD.Very Easy = 5 points \n");
+            num = 0;
             break;
         case "C":
             console.log("Variables");
             //A prompt to ask which Variables difficulty they would like.
             varDifficulty = prompt.question("Pick a difficulty \nA.Hard = 20 points \nB.Medium = 15 points \nC.Easy = 10 points \nD.Very Easy = 5 points \n");
+            num = 0;
             break;
         case "D":
             console.log("JavaScript Basics");
             //A prompt to ask which JavaScript difficulty they would like.
             javaDifficulty = prompt.question("Pick a difficulty \nA.Hard = 20 points \nB.Medium = 15 points \nC.Easy = 10 points \nD.Very Easy = 5 points \n");
+            num = 0;
             break;
         default:
             console.log("Invalid input");
-            num = 1
             break;
     };
     
 };
 
 quiz(); //This is used to start the quiz.
-if (num === 1) {
+while (num === 1) {
     quiz();
-    num = 0;
-}
+    
+};
 // All arrays for each category and the questions associated with each category with answers arrays
 
 let loopCategory =  ["Which loop is most suitable when you know exactly how many times something should repeat?", "Which loop may not run at all if its condition is false from the beginning?", "Which loop may not run at all if its condition is false from the beginning?", "Which loop type is guaranteed to execute at least once?" ];
@@ -76,10 +79,8 @@ switch(loopDifficulty){
         answer = prompt.question(loopCategory[4]);
         break;
 };
-
-let javascriptBasicsCategoryAnswers = [2,2,2,2];
-
-let name = {
+//for use later
+/*let name = {
     name: userName,
     points : 0,
-}
+}*/
