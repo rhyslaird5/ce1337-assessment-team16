@@ -44,3 +44,8 @@ let variablesCategoryAnswers = [2,2,2,3];
 
 let javascriptBasicsCategory = [" Fill in the blank: JavaScript is considered a ______ language because code is run line by line.", "What does NaN stand for?", "What is the purpose of console.log()?", "What naming style is commonly used for JavaScript variables containing multiple words?", ]
 let javascriptBasicsCategoryAnswers = [2,2,2,2];
+
+let name = {
+    name: userName,
+    points : 0,
+}
