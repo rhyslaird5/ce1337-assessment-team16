@@ -79,10 +79,8 @@ switch(loopDifficulty){
         answer = prompt.question(loopCategory[4]);
         break;
 };
-
-let javascriptBasicsCategoryAnswers = [2,2,2,2];
-
-let name = {
+//for use later
+/*let name = {
     name: userName,
     points : 0,
-}
+}*/
