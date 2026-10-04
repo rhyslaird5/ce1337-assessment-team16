@@ -2,45 +2,50 @@
 const prompt = require("readline-sync");
 //A function used to display that the user was incorrect and what the correct answer is.
 function wrongAnswer(corrAns){
-    console.log("That's incorrect its " + corrAns)
+    console.log("That's incorrect its " + corrAns);
 };
 let userCategories = null;
 let loopDifficulty = null;
 let condDifficulty = null;
 let varDifficulty = null;
 let javaDifficulty = null;
+let pointAmount="";
 let num = true;
 //A function that can be used to restart the quiz when called.
 function quiz(){
     userCategories = prompt.question("Pick a Category \nA. Loops \nB. Conditional \nC. Variables \nD. JavaScript Basics \n");
-    
+    userCategories = userCategories.toUpperCase();
     switch(userCategories){
         case "A":
             console.log("Loops");
             //A prompt to ask which Loop difficulty they would like.
             loopDifficulty = prompt.question("Pick a difficulty \nA.Hard = 20 points \nB.Medium = 15 points \nC.Easy = 10 points \nD.Very Easy = 5 points \n");
+            loopDifficulty = loopDifficulty.toUpperCase();
             num = false;
             break;
         case "B":
             console.log("Conditional");
             //A prompt to ask which Conditional difficulty they would like.
             condDifficulty = prompt.question("Pick a difficulty \nA.Hard = 20 points \nB.Medium = 15 points \nC.Easy = 10 points \nD.Very Easy = 5 points \n");
+            condDifficulty = condDifficulty.toUpperCase();
             num = false;
             break;
         case "C":
             console.log("Variables");
             //A prompt to ask which Variables difficulty they would like.
             varDifficulty = prompt.question("Pick a difficulty \nA.Hard = 20 points \nB.Medium = 15 points \nC.Easy = 10 points \nD.Very Easy = 5 points \n");
+            varDifficulty = varDifficulty.toUpperCase();
             num = false;
             break;
         case "D":
             console.log("JavaScript Basics");
             //A prompt to ask which JavaScript difficulty they would like.
             javaDifficulty = prompt.question("Pick a difficulty \nA.Hard = 20 points \nB.Medium = 15 points \nC.Easy = 10 points \nD.Very Easy = 5 points \n");
+            javaDifficulty = javaDifficulty.toUpperCase();
             num = false;
             break;
         default:
-            console.log("Invalid input");
+            console.log("Invalid input, Please enter A, B, C or D");
             break;
     };
     
@@ -50,46 +55,109 @@ let answer = null;
 let num2 = true
 //Function question will be used to shorten the amount of code needed therfore saving time
 //catDiff is short for Category Difficulty, catQ is short for Category Question, catQAnswer is shsort for Category Question Answers and catWrongAns is short for Categor wrong answers.
-function question(catDiff, catQ, catQAnswers, catWrongAns){
-    switch(catDiff){
-        case "A":
-            console.log(catQ[0])
-            answer = prompt.question();
-            if (answer == catQAnswers[0]){
-                console.log("That's correct!");
-                name.points = name.points + 20;
-            }
-            else if (answer == catWrongAns[0]){
-                console.log(wrongAnswer(catQAnswers[0]));
-            }
-            else {
-                console.log("Invalid input");
-                question;
-            };
-            num2 = false;
-            break;
-        case "B":
-            console.log(catQ[1])
-            answer = prompt.question();
-            num2 = false;
-            break;
-        case "C":
-            console.log(catQ[2])
-            answer = prompt.question();
-            num2 = false;
-            break;
-        case "D":
-            console.log(catQ[3])
-            answer = prompt.question();
-            num2 = false;
-            break;
-        default:
-            ("Invalid Input")
-            break;
-    };
+function question(catDiff, catQ, catQAnswers, catWrongAns, categoryOptions){
+    for (let i =0; i<4;i++){
+        switch(catDiff){
+            case "A":
+                console.log(catQ[i])
+                for (let j =0; j <4;j++){
+                    console.log(categoryOptions[i][j]+"\n")
+                }
+                answer = prompt.question("Enter your answer: ");
+                answer = answer.toUpperCase();
+                if (answer == catQAnswers[i]){
+                    console.log("That's correct!");
+                    name.points = name.points + 20;
+                    console.log(name.points);
+                }
+                else if (answer != catQAnswers[i]){
+                    console.log(wrongAnswer(catQAnswers[i]));
+                }
+                else {
+                    console.log("Invalid input");
+                    question;
+                };
+                num2 = false;
+                break;
+            case "B":
+                console.log(catQ[i])
+                for (let j =0; j <4;j++){
+                    console.log(categoryOptions[i][j]+"\n")
+                }
+                answer = prompt.question("Enter your answer: ");
+                answer = answer.toUpperCase();
+                if (answer == catQAnswers[i]){
+                    console.log("That's correct!");
+                    name.points = name.points + 20;
+                    console.log(name.points);
+                }
+                else if (answer != catQAnswers[i]){
+                    console.log(wrongAnswer(catQAnswers[i]));
+                }
+                else {
+                    console.log("Invalid input");
+                    question;
+                };
+                num2 = false;
+                break;
+            case "C":
+                console.log(catQ[i])
+                for (let j =0; j <4;j++){
+                    console.log(categoryOptions[i][j]+"\n")
+                }
+                answer = prompt.question("Enter your answer: ");
+                answer = answer.toUpperCase();
+                if (answer == catQAnswers[i]){
+                    console.log("That's correct!");
+                    name.points = name.points + 20;
+                    console.log(name.points);
+                }
+                else if (answer != catQAnswers[i]){
+                    console.log(wrongAnswer(catQAnswers[i]));
+                }
+                else {
+                    console.log("Invalid input");
+                    question;
+                };
+                num2 = false;
+                break;
+            case "D":
+                console.log(catQ[i])
+                for (let j =0; j <4;j++){
+                    console.log(categoryOptions[i][j]+"\n")
+                }
+                answer = prompt.question("Enter your answer: ");
+                answer = answer.toUpperCase();
+                if (answer == catQAnswers[i]){
+                    console.log("That's correct!");
+                    name.points = name.points + 20;
+                    console.log(name.points);
+                }
+                else if (answer != catQAnswers[i]){
+                    console.log(wrongAnswer(catQAnswers[i]));
+                }
+                else {
+                    console.log("Invalid input");
+                    question;
+                };
+                num2 = false;
+                break;
+            default:
+                console.log("Invalid input, Please enter A, B, C or D");
+                break;
+        };
+    }
+    // asks the user if they want to continue and it puts the user back to the beginning and if they dont then it calls a final report function then stops the program
+    let userContinue = prompt.question("Would you like to continue? (yes/no): ");
+    userContinue = userContinue.toUpperCase();
+    if (userContinue == "YES"){
+        quiz()
+    }else{
+        // final report function 
+    }
 };
 
-//for use later
+
 let name = {userName: "", points : 0};
 name.userName = prompt.question("Please enter a Username ");
 
@@ -100,10 +168,10 @@ while (num == true && num2 == true) {
 };
 // All arrays for each category and the questions associated with each category with answers arrays. Additionally, the options to each question
 
-let loopCategory =  ["Which loop is most suitable when you know exactly how many times something should repeat?", "Which loop may not run at all if its condition is false from the beginning?", "Which loop may not run at all if its condition is false from the beginning?", "Which loop type is guaranteed to execute at least once?" ];
+let loopCategory =  ["Which loop is most suitable when you know exactly how many times something should repeat?", "Which loop may not run at all if its condition is false from the beginning?", "What does the continue statement do?", "Which loop type is guaranteed to execute at least once?" ];
 let loopCategoryAnswers = ["C","A","B","C"];
 let loopWrong = [["A","B","D"],["B","C","D"],["A","C","D"],["A","B","D"]];
-let loopOptions = [["A) While","B) Do-While","C) For","D) Switch"], ["A) While","B) Do-While","C) For","D) Break"],["A) Ends the loop permanently", "B) skips the current iteration and moves to the next one", " C) Restarts the program", "D) Stops all code execution" ], ["A) For","B) While","C) Do-While","D) Switch"]];
+let loopOptions = [["A) While","B) Do-While","C) For","D) Switch"], ["A) While","B) Do-While","C) For","D) Break"],["A) Ends the loop permanently", "B) skips the current iteration and moves to the next one", "C) Restarts the program", "D) Stops all code execution" ], ["A) For","B) While","C) Do-While","D) Switch"]];
 
 let conditionalsCategory = ["Which operator means 'AND' in JavaScript?","What is the purpose of an if statement?", "Which operator means 'OR' in JavaScript?", "When should you use a switch statement?"];
 let conditionalsCategoryAnswers = ["B","B","B","B"];
@@ -144,16 +212,18 @@ let JavaScriptHardOptions = [["A) It only works on websites","B) Variable types 
 
 switch (userCategories){
     case "A":
-        question(loopDifficulty, loopCategory, loopCategoryAnswers, loopWrong);
+        console.log("im here");
+        question(loopDifficulty, loopCategory, loopCategoryAnswers, loopWrong, loopOptions);
         break;
     case "B":
-        question(condDifficulty, conditionalsCategory, conditionalsCategoryAnswers, conditionalsWrong);
+        console.log("im here");
+        question(condDifficulty, conditionalsCategory, conditionalsCategoryAnswers, conditionalsWrong, conditonalOptions);
         break;
     case "C":
-        question(varDifficulty, variablesCategory, variablesCategoryAnswers, varianlesWrong);
+        question(varDifficulty, variablesCategory, variablesCategoryAnswers, varianlesWrong, variableOptions);
         break;
     case "D":
-        question(javaDifficulty, javascriptBasicsCategory, javascriptBasicsCategoryAnswers, javacriptWrong);
+        question(javaDifficulty, javascriptBasicsCategory, javascriptBasicsCategoryAnswers, javacriptWrong, javasctriptBasicsOptions);
         break;
     default:
         console.log("Invalid Input");
