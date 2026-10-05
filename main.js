@@ -1,6 +1,10 @@
 //This enables the ability for the user to be prompted for an input.
 const prompt = require("readline-sync");
 
+//variable for player object
+let player = {userName: "", points : 0, categoriesCompleted: []}; // renamed, added category completion check
+player.userName = prompt.question("Please enter a username: ");
+
 //A function used to display that the user was incorrect and what the correct answer is.
 function showWrongAnswer(corrAns){ //renamed
     console.log("That's incorrect! Correct answer is " + corrAns);
@@ -12,21 +16,25 @@ let condDifficulty = null;
 let varDifficulty = null;
 let basicsDifficulty = null; // renamed: JavaScript basics
 
-//let pointAmount=""; // to replace
-
 //true once user picked valid category, not finished yet.
 let isCategoryChosen = false; // renamed let num, since it's a boolean, flipped for later positive check
-// add check for questions asked
-
-// add new logic for main game loop, when all categories done or user stops
+// store questions already asked so that no question is repeated
+let askedQuestions = [];
+// control main game loop - becomes true when all categories done or user stops
+let isGameOver = false;
 
 //A function that can be used to restart the quiz when called.
+
 //shows category menu and asks for difficulty in chosen category
 function chooseCategory(){
     isCategoryChosen = false; // resets each time so that a blocked or invalid pick doesn't start a category
     chosenCategory = prompt.question("Pick a category \nA. Loops \nB. Conditionals \nC. Variables \nD. JavaScript Basics \n");
     chosenCategory = chosenCategory.toUpperCase();
-    // add logic to block done categories
+    // block choosing done categories
+    if (player.categoriesCompleted.includes(chosenCategory)){
+        console.log("You've already completed that category, please pick a different one.");
+        return;
+    };
     switch(chosenCategory){
         case "A":
             console.log("Loops");
@@ -65,14 +73,15 @@ function chooseCategory(){
 
 let userAnswer = null;
 
-let num2 = true // replace
-
 //Function question will be used to shorten the amount of code needed therfore saving time
 //catDiff is short for Category Difficulty; obosolete: catQ is short for Category Question, catQAnswer is shsort for Category Question Answers and catWrongAns is short for Categor wrong answers.
 // asks all questions in a category, checks answer, updates score
 function askQuestions(catDiff, questions, correctAnswers, wrongAnswers, categoryOptions){
     for (let i =0; i<4;i++){
-        // check already asked questions / record answered questions
+        // check and skip already asked questions; then later record answered questions
+        if (askedQuestions.includes(questions[i])){
+            continue;
+        };
         switch(catDiff){
             case "A":
                 console.log(questions[i])
@@ -87,13 +96,12 @@ function askQuestions(catDiff, questions, correctAnswers, wrongAnswers, category
                     console.log(player.points);
                 }
                 else if (userAnswer != correctAnswers[i]){
-                    console.log(showWrongAnswer(correctAnswers[i]));
+                    showWrongAnswer(correctAnswers[i]);
                 }
                 else {
                     console.log("Invalid input");
-                    askQuestions;
+                    askQuestions();
                 };
-                num2 = false; //rm
                 break;
             case "B":
                 console.log(questions[i])
@@ -108,13 +116,12 @@ function askQuestions(catDiff, questions, correctAnswers, wrongAnswers, category
                     console.log(player.points);
                 }
                 else if (userAnswer != correctAnswers[i]){
-                    console.log(showWrongAnswer(correctAnswers[i]));
+                    showWrongAnswer(correctAnswers[i]);
                 }
                 else {
                     console.log("Invalid input");
-                    askQuestions;
+                    askQuestions();
                 };
-                num2 = false; //rm
                 break;
             case "C":
                 console.log(questions[i])
@@ -129,13 +136,12 @@ function askQuestions(catDiff, questions, correctAnswers, wrongAnswers, category
                     console.log(player.points);
                 }
                 else if (userAnswer != correctAnswers[i]){
-                    console.log(showWrongAnswer(correctAnswers[i]));
+                    showWrongAnswer(correctAnswers[i]);
                 }
                 else {
                     console.log("Invalid input");
-                    askQuestions;
+                    askQuestions();
                 };
-                num2 = false; //rm
                 break;
             case "D":
                 console.log(questions[i])
@@ -150,44 +156,42 @@ function askQuestions(catDiff, questions, correctAnswers, wrongAnswers, category
                     console.log(player.points);
                 }
                 else if (userAnswer != correctAnswers[i]){
-                    console.log(showWrongAnswer(correctAnswers[i]));
+                    showWrongAnswer(correctAnswers[i]);
                 }
                 else {
                     console.log("Invalid input");
-                    askQuestions;
+                    askQuestions();
                 };
-                num2 = false; //rm
                 break;
             default:
                 console.log("Invalid input, please enter A, B, C or D");
                 break;
         };
-
+        //once question is answered, records so that it can't be asked again
+        askedQuestions.push(questions[i]);
     }
-    // add on category end - add to completed
+    // once category ends - add to completed categories
+    player.categoriesCompleted.push(chosenCategory);
+    console.log("Categories completed: " + player.categoriesCompleted.length + "/4");
 
-    // add end game when all categories done
+    // end game when all categories done
+    if (player.categoriesCompleted.length === 4){
+        console.log("You've completed all 4 categories!");
+        isGameOver = true;
+        // final report function
+        return;
+    };
 
-    // asks the user if they want to continue and it puts the user back to the beginning and if they dont then it calls a final report function then stops the program
+    // asks the user if they want to continue; if yes, main loops takes user back to the category menu and if they don't then it calls a final report function then stops the program
     let userContinue = prompt.question("Would you like to continue? (yes/no): ");
     userContinue = userContinue.toUpperCase();
-    if (userContinue == "YES"){
-        chooseCategory()
-    }else{
-        // final report function 
+    if (userContinue != "YES"){
+        isGameOver = true;
+
+        // final report function
     }
 };
 
-
-let player = {userName: "", points : 0}; // renamed
-player.userName = prompt.question("Please enter a username ");
-
-// add loop check, move down
-chooseCategory(); //This is used to start the quiz.
-while (num == true && num2 == true) {
-    chooseCategory();
-    
-};
 // All arrays for each category and the questions associated with each category with answers arrays. Additionally, the options to each question
 
 let loopsQuestions =  ["Which loop is most suitable when you know exactly how many times something should repeat?", "Which loop may not run at all if its condition is false from the beginning?", "What does the continue statement do?", "Which loop type is guaranteed to execute at least once?"];
@@ -231,7 +235,8 @@ let basicsHardAnswers = ["B","D","C","A"];
 let basicsHardWrongAnswers = [["A","C","D"],["A","B","C"],["A","B","D"],["B","C","D"]];
 let basicsHardOptions = [["A) It only works on websites","B) Variable types can be determined and changed during execution","C) Variables must always be declared as numbers","D) It converts every value into text"], ["A) Using the shortest possible variable names","B) Avoiding comments","C) Using as many global variables as possible","D) Producing clear, readable, and well-structured code"],["A) They make programs execute faster","B) They reduce memory usage","C) They help explain code to developers without affecting execution","D) They automatically fix errors"],["A) It can respond to user actions and other events as they occur","B) It processes only one variable at a time","C) It requires events to start","D) It cannot run without a web browser"]];
 
-//put this in choose function?
+//run questions for chosen categories
+function startCategory(){
     switch (chosenCategory){
         case "A":
             askQuestions(loopDifficulty, loopsQuestions, loopsAnswers, loopsWrongAnswers, loopsOptions);
@@ -248,4 +253,14 @@ let basicsHardOptions = [["A) It only works on websites","B) Variable types can 
         default:
             console.log("Invalid input");
     }
+};
+
+//(new) main game loop; keeps showing the category menu until game over
+while (!isGameOver){
+    chooseCategory();
+    if (isCategoryChosen){
+        startCategory();
+    };
+};
+
 
