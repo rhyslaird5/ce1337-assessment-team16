@@ -317,20 +317,37 @@ let javascriptBasicsCategoryHardAnswers = ["B","D","C","A"];
 
 let JavaScriptHardOptions = [["A) It only works on websites","B) Variable types can be determined and changed during execution","C) Variables must always be declared as numbers","D) It converts every value into text"], ["A) Using the shortest possible variable names","B) Avoiding comments","C) Using as many global variables as possible","D) Producing clear, readable, and well-structured code"],["A) They make programs execute faster","B) They reduce memory usage","C) They help explain code to developers without affecting execution","D) They automatically fix errors"],["A) It can respond to user actions and other events as they occur","B) It processes only one variable at a time","C) It requires events to start","D) It cannot run without a web browser"]];
 
+// match each difficulty letter to the correct question, answer and option arrays
+let loopsQuestionsByDifficulty = {A: loopCategoryHard, B: loopCategoryMedium, C: loopCategoryEasy, D: loopCategoryVeryEasy};
+let loopsAnswersByDifficulty = {A: loopsCategoryHardAnswers, B: loopCategoryMediumAnswers, C: loopCategoryEasyAnswers, D: loopCategoryVeryEasyAnswers};
+let loopsOptionsByDifficulty = {A: loopHardOptions, B: loopCategoryMediumOptions, C: loopEasyOptions, D: loopCategoryVeryEasyOptions};
+
+let conditionalsQuestionsByDifficulty = {A: conditionalsCategoryHard, B: conditionalsCategoryMedium, C: conditionalsCategory, D: conditionalsCategoryVeryEasy};
+let conditionalsAnswersByDifficulty = {A: conditionalsCategoryHardAnswers, B: conditionalsCategoryMediumAnswers, C: conditionalsCategoryAnswers, D: conditionalsCategoryVeryEasyAnswers};
+let conditionalsOptionsByDifficulty = {A: conditionalHardoptions, B: conditionalMediumOptions, C: conditonalOptions, D: conditionalsCategoryVeryEasyOptions};
+
+let variablesQuestionsByDifficulty = {A: variablesCategoryHard, B: variablesCategoryMedium, C: variablesCategory, D: variablesCategoryVeryEasy};
+let variablesAnswersByDifficulty = {A: variablesCategoryHardAnswers, B: variablesCategoryMediumAnswers, C: variablesCategoryAnswers, D: variablesCategoryVeryEasyAnswers};
+let variablesOptionsByDifficulty = {A: variablesHardoptions, B: variablesCategoryMediumOptions, C: variableOptions, D: variablesCategoryVeryEasyOptions};
+
+let basicsQuestionsByDifficulty = {A: javascriptBasicsCategoryHard, B: javascriptBasicsCategoryMedium, C: javascriptBasicsCategory, D: javascriptBasicsCategoryVeryEasy};
+let basicsAnswersByDifficulty = {A: javascriptBasicsCategoryHardAnswers, B: javascriptBasicsCategoryMediumAnswers, C: javascriptBasicsCategoryAnswers, D: javascriptBasicsCategoryVeryEasyAnswers};
+let basicsOptionsByDifficulty = {A: JavaScriptHardOptions, B: javascriptBasicsCategoryMediumOptions, C: javasctriptBasicsOptions, D: javascriptBasicsCategoryVeryEasyOptions};
+
 //run questions for chosen categories
 function startCategory(){
     switch (chosenCategory){
         case "A":
-            askQuestions(loopDifficulty, loopsQuestions, loopsAnswers, loopsWrongAnswers, loopsOptions);
+            askQuestions(loopDifficulty, loopsQuestionsByDifficulty[loopDifficulty], loopsAnswersByDifficulty[loopDifficulty], [], loopsOptionsByDifficulty[loopDifficulty]);
             break;
         case "B":
-            askQuestions(condDifficulty, conditionalsQuestions, conditionalsAnswers, conditionalsWrongAnswers, conditionalsOptions);
+            askQuestions(condDifficulty, conditionalsQuestionsByDifficulty[condDifficulty], conditionalsAnswersByDifficulty[condDifficulty], [], conditionalsOptionsByDifficulty[condDifficulty]);
             break;
         case "C":
-            askQuestions(varDifficulty, variablesQuestions, variablesAnswers, variablesWrongAnswers, variablesOptions);
+            askQuestions(varDifficulty, variablesQuestionsByDifficulty[varDifficulty], variablesAnswersByDifficulty[varDifficulty], [], variablesOptionsByDifficulty[varDifficulty]);
             break;
         case "D":
-            askQuestions(basicsDifficulty, basicsQuestions, basicsAnswers, basicsWrongAnswers, basicsOptions);
+            askQuestions(basicsDifficulty, basicsQuestionsByDifficulty[basicsDifficulty], basicsAnswersByDifficulty[basicsDifficulty], [], basicsOptionsByDifficulty[basicsDifficulty]);
             break;
         default:
             console.log("Invalid input");
