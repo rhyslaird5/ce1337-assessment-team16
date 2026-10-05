@@ -24,40 +24,40 @@ let isCategoryChosen = false; // renamed let num, since it's a boolean, flipped 
 //shows category menu and asks for difficulty in chosen category
 function chooseCategory(){
     isCategoryChosen = false; // resets each time so that a blocked or invalid pick doesn't start a category
-    chosenCategory = prompt.question("Pick a Category \nA. Loops \nB. Conditionals \nC. Variables \nD. JavaScript Basics \n");
+    chosenCategory = prompt.question("Pick a category \nA. Loops \nB. Conditionals \nC. Variables \nD. JavaScript Basics \n");
     chosenCategory = chosenCategory.toUpperCase();
     // add logic to block done categories
     switch(chosenCategory){
         case "A":
             console.log("Loops");
-            //A prompt to ask which Loop difficulty they would like.
-            loopDifficulty = prompt.question("Pick a difficulty \nA.Hard = 20 points \nB.Medium = 15 points \nC.Easy = 10 points \nD.Very Easy = 5 points \n");
+            //A prompt to ask which Loops difficulty they would like.
+            loopDifficulty = prompt.question("Pick a difficulty \nA. Hard = 20 points \nB. Medium = 15 points \nC. Easy = 10 points \nD. Very Easy = 5 points \n");
             loopDifficulty = loopDifficulty.toUpperCase();
             isCategoryChosen = true;
             break;
         case "B":
-            console.log("Conditional");
-            //A prompt to ask which Conditional difficulty they would like.
-            condDifficulty = prompt.question("Pick a difficulty \nA.Hard = 20 points \nB.Medium = 15 points \nC.Easy = 10 points \nD.Very Easy = 5 points \n");
+            console.log("Conditionals");
+            //A prompt to ask which Conditionals difficulty they would like.
+            condDifficulty = prompt.question("Pick a difficulty \nA. Hard = 20 points \nB. Medium = 15 points \nC. Easy = 10 points \nD. Very Easy = 5 points \n");
             condDifficulty = condDifficulty.toUpperCase();
             isCategoryChosen = true;
             break;
         case "C":
             console.log("Variables");
             //A prompt to ask which Variables difficulty they would like.
-            varDifficulty = prompt.question("Pick a difficulty \nA.Hard = 20 points \nB.Medium = 15 points \nC.Easy = 10 points \nD.Very Easy = 5 points \n");
+            varDifficulty = prompt.question("Pick a difficulty \nA. Hard = 20 points \nB. Medium = 15 points \nC. Easy = 10 points \nD. Very Easy = 5 points \n");
             varDifficulty = varDifficulty.toUpperCase();
             isCategoryChosen = true;
             break;
         case "D":
             console.log("JavaScript Basics");
-            //A prompt to ask which JavaScript difficulty they would like.
-            basicsDifficulty = prompt.question("Pick a difficulty \nA.Hard = 20 points \nB.Medium = 15 points \nC.Easy = 10 points \nD.Very Easy = 5 points \n");
+            //A prompt to ask which JavaScript Basics difficulty they would like.
+            basicsDifficulty = prompt.question("Pick a difficulty \nA. Hard = 20 points \nB. Medium = 15 points \nC. Easy = 10 points \nD. Very Easy = 5 points \n");
             basicsDifficulty = basicsDifficulty.toUpperCase();
             isCategoryChosen = true;
             break;
         default:
-            console.log("Invalid input, Please enter A, B, C or D");
+            console.log("Invalid input, please enter A, B, C or D");
             break;
     };
     
@@ -79,7 +79,7 @@ function askQuestions(catDiff, questions, correctAnswers, wrongAnswers, category
                 for (let j =0; j <4;j++){
                     console.log(categoryOptions[i][j]+"\n")
                 }
-                userAnswer = prompt.askQuestions("Enter your answer: ");
+                userAnswer = prompt.question("Enter your answer: ");
                 userAnswer = userAnswer.toUpperCase();
                 if (userAnswer == correctAnswers[i]){
                     console.log("That's correct!");
@@ -159,7 +159,7 @@ function askQuestions(catDiff, questions, correctAnswers, wrongAnswers, category
                 num2 = false; //rm
                 break;
             default:
-                console.log("Invalid input, Please enter A, B, C or D");
+                console.log("Invalid input, please enter A, B, C or D");
                 break;
         };
 
@@ -180,7 +180,7 @@ function askQuestions(catDiff, questions, correctAnswers, wrongAnswers, category
 
 
 let player = {userName: "", points : 0}; // renamed
-player.userName = prompt.question("Please enter a Username ");
+player.userName = prompt.question("Please enter a username ");
 
 // add loop check, move down
 chooseCategory(); //This is used to start the quiz.
@@ -190,10 +190,10 @@ while (num == true && num2 == true) {
 };
 // All arrays for each category and the questions associated with each category with answers arrays. Additionally, the options to each question
 
-let loopsQuestions =  ["Which loop is most suitable when you know exactly how many times something should repeat?", "Which loop may not run at all if its condition is false from the beginning?", "What does the continue statement do?", "Which loop type is guaranteed to execute at least once?" ];
+let loopsQuestions =  ["Which loop is most suitable when you know exactly how many times something should repeat?", "Which loop may not run at all if its condition is false from the beginning?", "What does the continue statement do?", "Which loop type is guaranteed to execute at least once?"];
 let loopsAnswers = ["C","A","B","C"];
 let loopsWrongAnswers = [["A","B","D"],["B","C","D"],["A","C","D"],["A","B","D"]];
-let loopsOptions = [["A) While","B) Do-While","C) For","D) Switch"], ["A) While","B) Do-While","C) For","D) Break"],["A) Ends the loop permanently", "B) skips the current iteration and moves to the next one", "C) Restarts the program", "D) Stops all code execution" ], ["A) For","B) While","C) Do-While","D) Switch"]];
+let loopsOptions = [["A) While","B) Do-While","C) For","D) Switch"], ["A) While","B) Do-While","C) For","D) Break"],["A) Ends the loop permanently", "B) Skips the current iteration and moves to the next one", "C) Restarts the program", "D) Stops all code execution"], ["A) For","B) While","C) Do-While","D) Switch"]];
 
 let conditionalsQuestions = ["Which operator means 'AND' in JavaScript?","What is the purpose of an if statement?", "Which operator means 'OR' in JavaScript?", "When should you use a switch statement?"];
 let conditionalsAnswers = ["B","B","B","B"];
@@ -203,12 +203,12 @@ let conditionalsOptions = [["A) ||", "B) &&", "C) !", "D) =="], ["A) To repeat c
 let variablesQuestions = ["Which keyword is typically used for a variable whose value may change?", "Which keyword is used for a value that should stay constant?","What is a variable used for?", "Which of these is a Boolean value?"];
 let variablesAnswers = ["B","B","B","C"];
 let variablesWrongAnswers = [["A","C","D"],["A","C","D"],["A","C","D"],["A","B","D"]];
-let variablesOptions = [["A) const", " B) let", "C) fixed", "D) static"], ["A) let", "B) const", "C) var", "D) value"], ["A) Repeating code", "B) Storing data for later use", "C) Creating loops", "D) Ending a program"], ["A) 'Hello'", "B) 42", "C) true", "D) null"]];
+let variablesOptions = [["A) const", "B) let", "C) fixed", "D) static"], ["A) let", "B) const", "C) var", "D) value"], ["A) Repeating code", "B) Storing data for later use", "C) Creating loops", "D) Ending a program"], ["A) 'Hello'", "B) 42", "C) true", "D) null"]];
 
-let basicsQuestions = [" Fill in the blank: JavaScript is considered a ______ language because code is run line by line.", "What does NaN stand for?", "What is the purpose of console.log()?", "What naming style is commonly used for JavaScript variables containing multiple words?", ];
+let basicsQuestions = ["Fill in the blank: JavaScript is considered a ______ language because code is run line by line.", "What does NaN stand for?", "What is the purpose of console.log()?", "What naming style is commonly used for JavaScript variables containing multiple words?"];
 let basicsAnswers = ["B","B","B","B"];
 let basicsWrongAnswers = [["A","C","D"],["A","C","D"],["A","C","D"],["A","C","D"]];
-let basicsOptions = [["A) Compiled", "B) Interpreted", "C) Binary", "D) Static"], ["A) New and Null", "B) Not a Number","C) No Assigned Name",  "D) Number as Null"], ["A) To get user input", "B) To display output in the console", "C) To create variables", "D) To stop a program"], ["A) snake_case", "B) camelCase", "C) Pascal-Case", "D) UPPERCASE"]];
+let basicsOptions = [["A) Compiled", "B) Interpreted", "C) Binary", "D) Static"], ["A) New and Null", "B) Not a Number","C) No Assigned Name",  "D) Number as Null"], ["A) To get user input", "B) To display output in the console", "C) To create variables", "D) To stop a program"], ["A) snake_case", "B) camelCase", "C) PascalCase", "D) UPPERCASE"]];
 
 // Hard questions, answers and options arrays
 let loopsHardQuestions = ["Which loop is most appropriate when the number of iterations depends on user input and cannot be known beforehand?", "What is the primary risk of a poorly designed loop condition?", "Why might a programmer choose a for loop instead of a while loop?", "A loop should usually stop when:"];
@@ -219,7 +219,7 @@ let loopsHardOptions = [["A) while", "B) for", "C) switch", "D) const"], ["A) Va
 let conditionalsHardQuestions = ["What is the main benefit of using a switch statement rather than many if-else statements?", "Which of the following best describes a nested conditional?", "Why are conditional statements important in programming?", "Which logical operator would be most appropriate when only one of several conditions needs to be true?"];
 let conditionalsHardAnswers = ["B","C","A","D"]
 let conditionalsHardWrongAnswers = [["A","C","D"],["A","B","D"],["B","C","D"]];
-let conditionalsHardOptions = [["A) It uses less memory in every situation", "B) It can make code easier to read when checking one value against multiple options", "C) It can only check numbers", "D) It always executes faster"], ["A) A condition inside a loop", "B) Multiple switch statements", " C) A conditional statement placed inside another conditional statement", "D) Two conditions joined by AND"], ["A) They allow programs to make decisions based on data", "B) They store information", "C) They reduce file sizes", "D) They create functions automatically"], ["A) AND", "B) NOT", "C) Assignment", "D) OR"]];
+let conditionalsHardOptions = [["A) It uses less memory in every situation", "B) It can make code easier to read when checking one value against multiple options", "C) It can only check numbers", "D) It always executes faster"], ["A) A condition inside a loop", "B) Multiple switch statements", "C) A conditional statement placed inside another conditional statement", "D) Two conditions joined by AND"], ["A) They allow programs to make decisions based on data", "B) They store information", "C) They reduce file sizes", "D) They create functions automatically"], ["A) AND", "B) NOT", "C) Assignment", "D) OR"]];
 
 let variablesHardQuestions = ["Why is it important to choose meaningful variable names?","What is a common advantage of using constants instead of regular variables where possible?","Which data type would be most appropriate for storing whether a student has submitted coursework?", "What is the difference between a variable's name and its value?"];
 let variablesHardAnswers = ["A","C","B","D"];
@@ -246,6 +246,6 @@ let basicsHardOptions = [["A) It only works on websites","B) Variable types can 
             askQuestions(basicsDifficulty, basicsQuestions, basicsAnswers, basicsWrongAnswers, basicsOptions);
             break;
         default:
-            console.log("Invalid Input");
+            console.log("Invalid input");
     }
 
