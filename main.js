@@ -4,19 +4,19 @@ const prompt = require("readline-sync");
 // control main game loop - becomes true when all categories done or user wants to stop
 let isGameOver = false;
 
-// player object constant (for sanity)
-const player = {userName: "", points : 0, categoriesCompleted: []}; // renamed, added category completion check
+// player object constant 
+const player = {userName: "", points : 0, categoriesCompleted: []}; 
 player.userName = prompt.question("Please enter a username: ");
 
-let chosenCategory = null; // renamed: holds one category
-//once user picked valid category becomes true, not finished yet.
-let isCategoryChosen = false; // renamed let num, since it's a boolean, flipped for later positive check
+let chosenCategory = null; 
+//once user picked valid category becomes true
+let isCategoryChosen = false; 
 
 // difficulty setting for each category
 let loopDifficulty = null;
 let condDifficulty = null;
 let varDifficulty = null;
-let basicsDifficulty = null; // renamed: JavaScript basics
+let basicsDifficulty = null;
 // validate difficulty inputs
 const validDifficulties = ["A", "B", "C", "D"];
 
@@ -40,8 +40,6 @@ function showWrongAnswer(corrAns){ //renamed
     console.log("That's incorrect! Correct answer is " + corrAns);
 };
 
-//A function that can be used to restart the quiz when called.
-
 //shows category menu and asks for difficulty in chosen category
 function chooseCategory(){
     isCategoryChosen = false; // resets each time so that a blocked or invalid pick doesn't start a category
@@ -51,7 +49,7 @@ function chooseCategory(){
     if (player.categoriesCompleted.includes(chosenCategory)){
         console.log("You've already completed that category, please pick a different one.");
         return;
-    };
+    }
     switch(chosenCategory){
         case "A":
             console.log("Loops");
@@ -62,7 +60,7 @@ function chooseCategory(){
                 loopDifficulty = loopDifficulty.toUpperCase();
                 if (!validDifficulties.includes(loopDifficulty)){
                     console.log("Invalid input, please enter A, B, C or D");
-                };
+                }
             } while (!validDifficulties.includes(loopDifficulty));
             isCategoryChosen = true;
             break;
@@ -75,7 +73,7 @@ function chooseCategory(){
                 condDifficulty = condDifficulty.toUpperCase();
                 if (!validDifficulties.includes(condDifficulty)){
                     console.log("Invalid input, please enter A, B, C or D");
-                };
+                }
             } while (!validDifficulties.includes(condDifficulty));
             isCategoryChosen = true;
             break;
@@ -88,7 +86,7 @@ function chooseCategory(){
                 varDifficulty = varDifficulty.toUpperCase();
                 if (!validDifficulties.includes(varDifficulty)){
                     console.log("Invalid input, please enter A, B, C or D");
-                };
+                }
             } while (!validDifficulties.includes(varDifficulty));
             isCategoryChosen = true;
             break;
@@ -101,7 +99,7 @@ function chooseCategory(){
                 basicsDifficulty = basicsDifficulty.toUpperCase();
                 if (!validDifficulties.includes(basicsDifficulty)){
                     console.log("Invalid input, please enter A, B, C or D");
-                };
+                }
             } while (!validDifficulties.includes(basicsDifficulty));
             isCategoryChosen = true;
             break;
@@ -112,10 +110,7 @@ function chooseCategory(){
     
 };
 
-//let userAnswer = null; moved to start of file, it was feeling lonely here... 
-// OR bring let askedQuestions = []; here together? maybe let isGameOver = false; too?
-
-//
+//output game results
 function finalReport() {
                     console.log("\nFinal Report");
                     console.log("Player: " + player.userName);
@@ -123,15 +118,15 @@ function finalReport() {
                     console.log("Categories completed: " + player.categoriesCompleted.join(", "));
         };
 
-//Function question will be used to shorten the amount of code needed therfore saving time
-//catDiff is short for Category Difficulty; obsolete: catQ is short for Category Question, catQAnswer is shsort for Category Question Answers and catWrongAns is short for Categor wrong answers.
+
+//catDiff is short for Category Difficulty;
 // asks all questions in a category, checks answer, updates score
-function askQuestions(catDiff, questions, correctAnswers, wrongAnswers, categoryOptions){
+function askQuestions(catDiff, questions, correctAnswers, categoryOptions){
     for (let i =0; i<4;i++){
         // check and skip already asked questions; then later record answered questions
         if (askedQuestions.includes(questions[i])){
             continue;
-        };
+        }
         switch(catDiff){
             case "A":
                 console.log(questions[i])
@@ -151,7 +146,7 @@ function askQuestions(catDiff, questions, correctAnswers, wrongAnswers, category
                 else {
                     console.log("Invalid input");
                     askQuestions();
-                };
+                }
                 break;
             case "B":
                 console.log(questions[i])
@@ -171,7 +166,7 @@ function askQuestions(catDiff, questions, correctAnswers, wrongAnswers, category
                 else {
                     console.log("Invalid input");
                     askQuestions();
-                };
+                }
                 break;
             case "C":
                 console.log(questions[i])
@@ -191,7 +186,7 @@ function askQuestions(catDiff, questions, correctAnswers, wrongAnswers, category
                 else {
                     console.log("Invalid input");
                     askQuestions();
-                };
+                }
                 break;
             case "D":
                 console.log(questions[i])
@@ -211,7 +206,7 @@ function askQuestions(catDiff, questions, correctAnswers, wrongAnswers, category
                 else {
                     console.log("Invalid input");
                     askQuestions();
-                };
+                }
                 break;
             default:
                 console.log("Invalid input, please enter A, B, C or D");
@@ -338,28 +333,28 @@ let basicsOptionsByDifficulty = {A: JavaScriptHardOptions, B: javascriptBasicsCa
 function startCategory(){
     switch (chosenCategory){
         case "A":
-            askQuestions(loopDifficulty, loopsQuestionsByDifficulty[loopDifficulty], loopsAnswersByDifficulty[loopDifficulty], [], loopsOptionsByDifficulty[loopDifficulty]);
+            askQuestions(loopDifficulty, loopsQuestionsByDifficulty[loopDifficulty], loopsAnswersByDifficulty[loopDifficulty], loopsOptionsByDifficulty[loopDifficulty]);
             break;
         case "B":
-            askQuestions(condDifficulty, conditionalsQuestionsByDifficulty[condDifficulty], conditionalsAnswersByDifficulty[condDifficulty], [], conditionalsOptionsByDifficulty[condDifficulty]);
+            askQuestions(condDifficulty, conditionalsQuestionsByDifficulty[condDifficulty], conditionalsAnswersByDifficulty[condDifficulty], conditionalsOptionsByDifficulty[condDifficulty]);
             break;
         case "C":
-            askQuestions(varDifficulty, variablesQuestionsByDifficulty[varDifficulty], variablesAnswersByDifficulty[varDifficulty], [], variablesOptionsByDifficulty[varDifficulty]);
+            askQuestions(varDifficulty, variablesQuestionsByDifficulty[varDifficulty], variablesAnswersByDifficulty[varDifficulty], variablesOptionsByDifficulty[varDifficulty]);
             break;
         case "D":
-            askQuestions(basicsDifficulty, basicsQuestionsByDifficulty[basicsDifficulty], basicsAnswersByDifficulty[basicsDifficulty], [], basicsOptionsByDifficulty[basicsDifficulty]);
+            askQuestions(basicsDifficulty, basicsQuestionsByDifficulty[basicsDifficulty], basicsAnswersByDifficulty[basicsDifficulty], basicsOptionsByDifficulty[basicsDifficulty]);
             break;
         default:
             console.log("Invalid input");
     }
 };
 
-//(new) main game loop; keeps showing the category menu until game over
+//main game loop; keeps showing the category menu until game over
 while (!isGameOver){
     chooseCategory();
     if (isCategoryChosen){
         startCategory();
-    };
+    }
 };
 
 
